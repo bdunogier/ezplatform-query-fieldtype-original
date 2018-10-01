@@ -1,0 +1,20 @@
+{
+    "name": "bdunogier/platform-query-field-type",
+    "description": "An eZ Platform Field Type that defines a query.",
+    "type": "ezplatform-bundle",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Bertrand Dunogier",
+            "email": "bertrand.dunogier@ez.no"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "BD\\PlatformQueryFieldType\\": "src/BD/PlatformQueryFieldType/src/lib",
+            "BD\\PlatformQueryFieldTypeBundle\\": "src/BD/PlatformQueryFieldType/src/bundle"
+        }
+    }
+}
