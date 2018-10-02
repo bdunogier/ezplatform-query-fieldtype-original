@@ -16,12 +16,12 @@ Add the package's repositor to `composer.json`:
 
 ```json
 {
-  "repositories": {
+  "repositories": [
     {
       "type": "git",
       "uri": "https://github.com/bdunogier/ezplatform-query-field-type.git"
     }
-  }
+  ]
 }
 ```
 
