@@ -13,8 +13,8 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "BD\\PlatformQueryFieldType\\": "src/BD/PlatformQueryFieldType/src/lib",
-            "BD\\PlatformQueryFieldTypeBundle\\": "src/BD/PlatformQueryFieldType/src/bundle"
+            "BD\\PlatformQueryFieldType\\": "src/lib",
+            "BD\\PlatformQueryFieldTypeBundle\\": "src/bundle"
         }
     }
 }
