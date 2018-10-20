@@ -19,7 +19,7 @@ Add the package's repositor to `composer.json`:
   "repositories": [
     {
       "type": "git",
-      "uri": "https://github.com/bdunogier/ezplatform-query-field-type.git"
+      "url": "https://github.com/bdunogier/PlatformQueryFieldType.git"
     }
   ]
 }
