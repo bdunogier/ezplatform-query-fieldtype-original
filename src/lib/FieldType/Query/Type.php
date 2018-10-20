@@ -16,6 +16,7 @@ class Type extends FieldType
     protected $settingsSchema = [
         'QueryType' => ['type' => 'string', 'default' => ''],
         'Parameters' => ['type' => 'string', 'default' => ''],
+        'ReturnedType' => ['type' => 'string', 'default' => ''],
     ];
 
 
