@@ -19,9 +19,16 @@ class QueryFormMapper implements FieldDefinitionFormMapperInterface, FieldValueF
      */
     private $contentTypeService;
 
-    public function __construct(ContentTypeService $contentTypeService)
+    /**
+     * List of query types
+     * @var array
+     */
+    private $queryTypes;
+
+    public function __construct(ContentTypeService $contentTypeService, array $queryTypes = [])
     {
         $this->contentTypeService = $contentTypeService;
+        $this->queryTypes = $queryTypes;
     }
 
     public function mapFieldDefinitionForm(FormInterface $fieldDefinitionForm, FieldDefinitionData $data)
@@ -31,11 +38,7 @@ class QueryFormMapper implements FieldDefinitionFormMapperInterface, FieldValueF
                 [
                     'label' => 'Query type',
                     'property_path' => 'fieldSettings[QueryType]',
-                    'choices' => [
-                        // @todo use QueryType registry or something
-                        'Nearby places' => 'NearbyPlaces',
-                        'Children' => 'Children'
-                    ]
+                    'choices' => $this->queryTypes,
                 ]
             )
             ->add('ReturnedType', Type\ChoiceType::class,
