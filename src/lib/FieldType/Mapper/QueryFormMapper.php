@@ -92,7 +92,7 @@ class QueryFormMapper implements FieldDefinitionFormMapperInterface, FieldValueF
     {
         foreach ($this->contentTypeService->loadContentTypeGroups() as $contentTypeGroup) {
             foreach ($this->contentTypeService->loadContentTypes($contentTypeGroup) as $contentType) {
-                yield $contentType->identifier => $contentType->getName();
+                yield $contentType->getName() => $contentType->identifier;
             }
         }
     }

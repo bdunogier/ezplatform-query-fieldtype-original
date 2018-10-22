@@ -30,7 +30,7 @@ class QueryTypesListPass implements CompilerPassInterface
                 $queryTypes[] = $methodCall[1][0];
             } else if ($methodCall[0] === 'addQueryTypes') {
                 foreach (array_keys($methodCall[1][0]) as $queryTypeIdentifier) {
-                    $queryTypes[$queryTypeIdentifier] = $this->buildQueryTypeName($queryTypeIdentifier);
+                    $queryTypes[$this->buildQueryTypeName($queryTypeIdentifier)] = $queryTypeIdentifier;
                 }
             }
         }
