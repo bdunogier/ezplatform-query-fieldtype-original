@@ -11,7 +11,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "bdunogier/ezplatform-graphql-bundle": "^0.4@dev"
+        "bdunogier/ezplatform-graphql-bundle": "^0.3@dev"
     },
     "autoload": {
         "psr-4": {
