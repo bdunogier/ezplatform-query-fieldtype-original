@@ -57,6 +57,7 @@ class QueryConverter implements Converter
     public function toStorageFieldDefinition(FieldDefinition $fieldDef, StorageFieldDefinition $storageDef)
     {
         $storageDef->dataText1 = $fieldDef->fieldTypeConstraints->fieldSettings['QueryType'];
+        $storageDef->dataText2 = $fieldDef->fieldTypeConstraints->fieldSettings['ReturnedType'];
         $storageDef->dataText5 = $fieldDef->fieldTypeConstraints->fieldSettings['Parameters'];
     }
 
@@ -70,6 +71,7 @@ class QueryConverter implements Converter
     {
         $fieldDef->fieldTypeConstraints->fieldSettings = [
             'QueryType' => $storageDef->dataText1 ?: null,
+            'ReturnedType' => $storageDef->dataText2 ?: null,
             'Parameters' => $storageDef->dataText5 ?: ''
         ];
     }

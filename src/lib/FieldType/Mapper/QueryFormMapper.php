@@ -3,6 +3,7 @@
 namespace BD\PlatformQueryFieldType\FieldType\Mapper;
 
 use BD\PlatformQueryFieldType\Form\Type\FieldType\QueryFieldType;
+use eZ\Publish\API\Repository\ContentTypeService;
 use EzSystems\RepositoryForms\Data\Content\FieldData;
 use EzSystems\RepositoryForms\Data\FieldDefinitionData;
 use EzSystems\RepositoryForms\FieldType\FieldDefinitionFormMapperInterface;
@@ -13,6 +14,23 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class QueryFormMapper implements FieldDefinitionFormMapperInterface, FieldValueFormMapperInterface
 {
+    /**
+     * @var ContentTypeService
+     */
+    private $contentTypeService;
+
+    /**
+     * List of query types
+     * @var array
+     */
+    private $queryTypes;
+
+    public function __construct(ContentTypeService $contentTypeService, array $queryTypes = [])
+    {
+        $this->contentTypeService = $contentTypeService;
+        $this->queryTypes = $queryTypes;
+    }
+
     public function mapFieldDefinitionForm(FormInterface $fieldDefinitionForm, FieldDefinitionData $data)
     {
         $fieldDefinitionForm
@@ -20,10 +38,14 @@ class QueryFormMapper implements FieldDefinitionFormMapperInterface, FieldValueF
                 [
                     'label' => 'Query type',
                     'property_path' => 'fieldSettings[QueryType]',
-                    'choices' => [
-                        'Nearby places' => 'NearbyPlaces',
-                        'Children' => 'Children'
-                    ]
+                    'choices' => $this->queryTypes,
+                ]
+            )
+            ->add('ReturnedType', Type\ChoiceType::class,
+                [
+                    'label' => 'Returned type',
+                    'property_path' => 'fieldSettings[ReturnedType]',
+                    'choices' => $this->getContentTypes(),
                 ]
             )
             ->add('Parameters', Type\TextareaType::class,
@@ -64,5 +86,14 @@ class QueryFormMapper implements FieldDefinitionFormMapperInterface, FieldValueF
             ->setDefaults([
                 'translation_domain' => 'ezrepoforms_content_type',
             ]);
+    }
+
+    private function getContentTypes()
+    {
+        foreach ($this->contentTypeService->loadContentTypeGroups() as $contentTypeGroup) {
+            foreach ($this->contentTypeService->loadContentTypes($contentTypeGroup) as $contentType) {
+                yield $contentType->getName() => $contentType->identifier;
+            }
+        }
     }
 }

@@ -8,3 +8,5 @@ services:
         tags:
             - { name: ez.fieldFormMapper.definition, fieldType: query }
             - { name: ez.fieldFormMapper.value, fieldType: query }
+        arguments:
+            $contentTypeService: '@ezpublish.api.service.content_type'
