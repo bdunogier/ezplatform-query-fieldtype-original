@@ -2,10 +2,10 @@ system:
     default:
         fielddefinition_settings_templates:
             -
-                template: "BDPlatformQueryFieldTypeBundle::fielddefinition_settings.html.twig"
+                template: "BDEzPlatformQueryFieldTypeBundle::fielddefinition_settings.html.twig"
         fielddefinition_edit_templates:
             -
-                template: "BDPlatformQueryFieldTypeBundle::field_types.html.twig"
+                template: "BDEzPlatformQueryFieldTypeBundle::field_types.html.twig"
         field_templates:
             -
-                template: "BDPlatformQueryFieldTypeBundle::content_fields.html.twig"
+                template: "BDEzPlatformQueryFieldTypeBundle::content_fields.html.twig"
