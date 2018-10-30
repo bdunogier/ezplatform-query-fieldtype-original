@@ -27,7 +27,7 @@ class BDEzPlatformQueryFieldTypeExtension extends Extension implements PrependEx
 
     public function prepend(ContainerBuilder $container)
     {
-        $container->prependExtensionConfig('assetic', array('bundles' => array('BDPlatformQueryFieldTypeBundle')));
+        $container->prependExtensionConfig('assetic', ['bundles' => ['BDEzPlatformQueryFieldTypeBundle']]);
 
         $configFile = __DIR__ . '/../Resources/config/field_templates.yml';
         $config = Yaml::parse(file_get_contents($configFile));
