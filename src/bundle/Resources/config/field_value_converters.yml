@@ -4,8 +4,8 @@ services:
         autoconfigure: true
         public: false
 
-    BD\PlatformQueryFieldType\Form\Type\FieldType\QueryFieldType: ~
+    BD\EzPlatformQueryFieldType\Form\Type\FieldType\QueryFieldType: ~
 
-    BD\PlatformQueryFieldType\Persistence\Legacy\Content\FieldValue\Converter\QueryConverter:
+    BD\EzPlatformQueryFieldType\Persistence\Legacy\Content\FieldValue\Converter\QueryConverter:
         tags:
             - {name: ezpublish.storageEngine.legacy.converter, alias: query}

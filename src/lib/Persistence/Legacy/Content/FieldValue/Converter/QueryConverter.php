@@ -1,6 +1,6 @@
 <?php
 
-namespace BD\PlatformQueryFieldType\Persistence\Legacy\Content\FieldValue\Converter;
+namespace BD\EzPlatformQueryFieldType\Persistence\Legacy\Content\FieldValue\Converter;
 
 use eZ\Publish\Core\Persistence\Legacy\Content\FieldValue\Converter;
 use eZ\Publish\Core\Persistence\Legacy\Content\StorageFieldValue;

@@ -12,14 +12,14 @@ The idea is to move content and structure logic implemented in controllers and t
 to the repository itself.
 
 ## Installation
-Add the package's repositor to `composer.json`:
+Add the package's repository to `composer.json`:
 
 ```json
 {
   "repositories": [
     {
       "type": "git",
-      "url": "https://github.com/bdunogier/PlatformQueryFieldType.git"
+      "url": "https://github.com/bdunogier/ezplatform-query-fieldtype.git"
     }
   ]
 }
@@ -27,7 +27,7 @@ Add the package's repositor to `composer.json`:
 
 Add the package to the requirements:
 ```
-composer require bdunogier/ezplatform-query-field-type:dev-master
+composer require bdunogier/ezplatform-query-fieldtype:dev-master
 ```
 
 Add the package to `app/AppKernel.php`:

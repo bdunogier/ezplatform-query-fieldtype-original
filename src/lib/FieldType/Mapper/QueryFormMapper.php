@@ -1,8 +1,8 @@
 <?php
 
-namespace BD\PlatformQueryFieldType\FieldType\Mapper;
+namespace BD\EzPlatformQueryFieldType\FieldType\Mapper;
 
-use BD\PlatformQueryFieldType\Form\Type\FieldType\QueryFieldType;
+use BD\EzPlatformQueryFieldType\Form\Type\FieldType\QueryFieldType;
 use eZ\Publish\API\Repository\ContentTypeService;
 use EzSystems\RepositoryForms\Data\Content\FieldData;
 use EzSystems\RepositoryForms\Data\FieldDefinitionData;

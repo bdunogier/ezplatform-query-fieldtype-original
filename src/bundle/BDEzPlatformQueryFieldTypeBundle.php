@@ -1,12 +1,12 @@
 <?php
 
-namespace BD\PlatformQueryFieldTypeBundle;
+namespace BD\EzPlatformQueryFieldTypeBundle;
 
-use BD\PlatformQueryFieldTypeBundle\DependencyInjection\Compiler\QueryTypesListPass;
+use BD\EzPlatformQueryFieldTypeBundle\DependencyInjection\Compiler\QueryTypesListPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class BDPlatformQueryFieldTypeBundle extends Bundle
+class BDEzPlatformQueryFieldTypeBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {

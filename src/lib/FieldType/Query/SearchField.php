@@ -1,6 +1,6 @@
 <?php
 
-namespace BD\PlatformQueryFieldType\FieldType\Query;
+namespace BD\EzPlatformQueryFieldType\FieldType\Query;
 
 use eZ\Publish\SPI\Persistence\Content\Field;
 use eZ\Publish\SPI\Persistence\Content\Type\FieldDefinition;

@@ -1,6 +1,6 @@
 <?php
 
-namespace BD\PlatformQueryFieldTypeBundle\DependencyInjection;
+namespace BD\EzPlatformQueryFieldTypeBundle\DependencyInjection;
 
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

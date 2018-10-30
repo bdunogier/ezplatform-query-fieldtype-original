@@ -4,6 +4,6 @@ services:
         autoconfigure: true
         public: false
 
-    BD\PlatformQueryFieldType\FieldType\Query\SearchField:
+    BD\EzPlatformQueryFieldType\FieldType\Query\SearchField:
         tags:
             - {name: ezpublish.fieldType.indexable, alias: query}

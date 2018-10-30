@@ -1,6 +1,6 @@
 <?php
 
-namespace BD\PlatformQueryFieldType\FieldType\Query;
+namespace BD\EzPlatformQueryFieldType\FieldType\Query;
 
 use eZ\Publish\Core\FieldType\FieldType;
 use eZ\Publish\Core\FieldType\ValidationError;

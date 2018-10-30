@@ -1,5 +1,5 @@
 {
-    "name": "bdunogier/platform-query-field-type",
+    "name": "bdunogier/ezplatform-query-fieldtype",
     "description": "An eZ Platform Field Type that defines a query.",
     "type": "ezplatform-bundle",
     "license": "GPL-2.0",
@@ -15,8 +15,8 @@
     },
     "autoload": {
         "psr-4": {
-            "BD\\PlatformQueryFieldType\\": "src/lib",
-            "BD\\PlatformQueryFieldTypeBundle\\": "src/bundle"
+            "BD\\EzPlatformQueryFieldType\\": "src/lib",
+            "BD\\EzPlatformQueryFieldTypeBundle\\": "src/bundle"
         }
     }
 }

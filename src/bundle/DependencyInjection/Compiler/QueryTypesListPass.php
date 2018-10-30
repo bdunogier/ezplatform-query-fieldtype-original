@@ -1,7 +1,7 @@
 <?php
-namespace BD\PlatformQueryFieldTypeBundle\DependencyInjection\Compiler;
+namespace BD\EzPlatformQueryFieldTypeBundle\DependencyInjection\Compiler;
 
-use BD\PlatformQueryFieldType\FieldType\Mapper\QueryFormMapper;
+use BD\EzPlatformQueryFieldType\FieldType\Mapper\QueryFormMapper;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;

@@ -1,6 +1,6 @@
 <?php
 
-namespace BD\PlatformQueryFieldType\Form\Type\FieldType;
+namespace BD\EzPlatformQueryFieldType\Form\Type\FieldType;
 
 use eZ\Publish\API\Repository\FieldTypeService;
 use EzSystems\RepositoryForms\FieldType\DataTransformer\FieldValueTransformer;
