@@ -1,0 +1,5 @@
+services:
+    BD\EzPlatformQueryFieldType\Controller\QueryFieldController:
+        autoconfigure: true
+        autowire: true
+        public: true
