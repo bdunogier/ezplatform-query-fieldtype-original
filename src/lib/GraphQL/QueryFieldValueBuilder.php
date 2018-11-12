@@ -48,6 +48,10 @@ class QueryFieldValueBuilder implements FieldValueBuilder
                 '@=resolver("QueryFieldValue", [value, "%s"])',
                 $fieldDefinition->identifier
             ),
+            'public' => sprintf(
+                '@=service("ezplatform_graphql.can_user").viewContentOfType("%s")',
+                $fieldSettings['ReturnedType']
+            )
         ];
     }
 
