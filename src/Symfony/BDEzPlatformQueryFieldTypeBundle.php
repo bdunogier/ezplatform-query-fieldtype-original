@@ -1,8 +1,8 @@
 <?php
 
-namespace BD\EzPlatformQueryFieldTypeBundle;
+namespace BD\EzPlatformQueryFieldType\Symfony;
 
-use BD\EzPlatformQueryFieldTypeBundle\DependencyInjection\Compiler\QueryTypesListPass;
+use BD\EzPlatformQueryFieldType\Symfony\DependencyInjection\Compiler\QueryTypesListPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
