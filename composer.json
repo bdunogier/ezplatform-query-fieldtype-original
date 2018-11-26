@@ -18,5 +18,8 @@
             "BD\\EzPlatformQueryFieldType\\": "src/lib",
             "BD\\EzPlatformQueryFieldTypeBundle\\": "src/bundle"
         }
+    },
+    "require-dev": {
+        "phpspec/phpspec": "^5.1"
     }
 }
