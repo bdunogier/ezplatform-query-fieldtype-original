@@ -11,6 +11,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
+        "php": ">=7.1",
         "bdunogier/ezplatform-graphql-bundle": "^0.4@dev"
     },
     "autoload": {
