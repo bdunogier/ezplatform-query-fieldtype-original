@@ -21,5 +21,11 @@
     },
     "require-dev": {
         "phpspec/phpspec": "^5.1"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-schema_refactoring": "0.2.x-dev"
+        }
     }
+
 }
