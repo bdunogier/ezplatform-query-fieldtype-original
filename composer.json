@@ -11,12 +11,12 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "bdunogier/ezplatform-graphql-bundle": "^0.3"
+        "php": ">=7.1",
+        "bdunogier/ezplatform-graphql-bundle": "^1.0@dev"
     },
     "autoload": {
         "psr-4": {
-            "BD\\EzPlatformQueryFieldType\\": "src/lib",
-            "BD\\EzPlatformQueryFieldTypeBundle\\": "src/bundle"
+            "BD\\EzPlatformQueryFieldType\\": "src"
         }
     },
     "require-dev": {

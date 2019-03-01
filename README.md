@@ -34,7 +34,7 @@ Add the package to `app/AppKernel.php`:
 ```php
 $bundles = [
   // ...
-  new BD\EzPlatformQueryFieldTypeBundle\EzPlatformQueryFieldTypeBundle(),
+  new BD\EzPlatformQueryFieldType\Symfony\EzPlatformQueryFieldTypeBundle(),
 ]
 ```
 

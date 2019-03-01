@@ -1,5 +1,5 @@
 <?php
-namespace BD\EzPlatformQueryFieldTypeBundle\DependencyInjection\Compiler;
+namespace BD\EzPlatformQueryFieldType\Symfony\DependencyInjection\Compiler;
 
 use BD\EzPlatformQueryFieldType\FieldType\Mapper\QueryFormMapper;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;

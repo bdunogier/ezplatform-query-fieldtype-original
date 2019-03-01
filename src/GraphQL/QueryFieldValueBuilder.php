@@ -1,11 +1,11 @@
 <?php
 namespace BD\EzPlatformQueryFieldType\GraphQL;
 
-use BD\EzPlatformGraphQLBundle\Schema\Domain\Content\FieldValueBuilder\FieldValueBuilder;
-use BD\EzPlatformGraphQLBundle\Schema\Domain\Content\NameHelper;
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\Values\ContentType\FieldDefinition;
 use eZ\Publish\Core\QueryType\QueryTypeRegistry;
+use EzSystems\EzPlatformGraphQL\Schema\Domain\Content\FieldValueBuilder\FieldValueBuilder;
+use EzSystems\EzPlatformGraphQL\Schema\Domain\Content\NameHelper;
 
 class QueryFieldValueBuilder implements FieldValueBuilder
 {
