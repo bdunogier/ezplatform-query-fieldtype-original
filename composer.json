@@ -12,7 +12,7 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=7.1",
-        "bdunogier/ezplatform-graphql-bundle": "^1.0@dev"
+        "ezsystems/ezplatform-graphql": "^1.0@dev"
     },
     "autoload": {
         "psr-4": {
