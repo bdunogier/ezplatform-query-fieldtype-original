@@ -4,7 +4,7 @@ services:
         autoconfigure: true
         public: false
 
-    BD\EzPlatformQueryFieldType\GraphQL\Resolver\QueryFieldResolver:
+    BD\EzPlatformQueryFieldType\GraphQL\QueryFieldResolver:
         tags:
             - { name: overblog_graphql.resolver, alias: "QueryFieldValue", method: "resolveQueryField" }
 

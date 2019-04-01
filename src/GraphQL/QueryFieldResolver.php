@@ -1,5 +1,5 @@
 <?php
-namespace BD\EzPlatformQueryFieldType\GraphQL\Resolver;
+namespace BD\EzPlatformQueryFieldType\GraphQL;
 
 use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\Core\QueryType\QueryTypeRegistry;
