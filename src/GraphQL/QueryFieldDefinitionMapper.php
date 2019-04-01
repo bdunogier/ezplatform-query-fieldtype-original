@@ -3,18 +3,12 @@ namespace BD\EzPlatformQueryFieldType\GraphQL;
 
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\Values\ContentType\FieldDefinition;
-use eZ\Publish\Core\QueryType\QueryTypeRegistry;
 use EzSystems\EzPlatformGraphQL\Schema\Domain\Content\Mapper\FieldDefinition\DecoratingFieldDefinitionMapper;
 use EzSystems\EzPlatformGraphQL\Schema\Domain\Content\Mapper\FieldDefinition\FieldDefinitionMapper;
 use EzSystems\EzPlatformGraphQL\Schema\Domain\Content\NameHelper;
 
 class QueryFieldDefinitionMapper extends DecoratingFieldDefinitionMapper implements FieldDefinitionMapper
 {
-    /**
-     * @var QueryTypeRegistry
-     */
-    private $queryTypeRegistry;
-
     /**
      * @var NameHelper
      */
@@ -27,12 +21,10 @@ class QueryFieldDefinitionMapper extends DecoratingFieldDefinitionMapper impleme
 
     public function __construct(
         FieldDefinitionMapper $innerMapper,
-        QueryTypeRegistry $queryTypeRegistry,
         NameHelper $nameHelper,
         ContentTypeService $contentTypeService
     ) {
         parent::__construct($innerMapper);
-        $this->queryTypeRegistry = $queryTypeRegistry;
         $this->nameHelper = $nameHelper;
         $this->contentTypeService = $contentTypeService;
     }
