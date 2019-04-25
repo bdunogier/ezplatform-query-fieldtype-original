@@ -31,11 +31,6 @@ class QueryFieldType extends AbstractType
         return 'ezplatform_fieldtype_query';
     }
 
-    public function getParent()
-    {
-        return TextType::class;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('query')));

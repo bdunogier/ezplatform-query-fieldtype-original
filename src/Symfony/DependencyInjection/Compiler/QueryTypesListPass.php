@@ -1,6 +1,7 @@
 <?php
 namespace BD\EzPlatformQueryFieldType\Symfony\DependencyInjection\Compiler;
 
+use BD\EzPlatformQueryFieldType\DataProvider\QueryTypeDataProvider;
 use BD\EzPlatformQueryFieldType\FieldType\Mapper\QueryFormMapper;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -20,7 +21,7 @@ class QueryTypesListPass implements CompilerPassInterface
 
     public function process(ContainerBuilder $container)
     {
-        if (!$container->has('ezpublish.query_type.registry') || !$container->has(QueryFormMapper::class)) {
+        if (!$container->has('ezpublish.query_type.registry') || !$container->has(QueryTypeDataProvider::class)) {
             return;
         }
 
@@ -35,8 +36,8 @@ class QueryTypesListPass implements CompilerPassInterface
             }
         }
 
-        $formMapperDefinition = $container->getDefinition(QueryFormMapper::class);
-        $formMapperDefinition->setArgument('$queryTypes', $queryTypes);
+        $formMapperDefinition = $container->getDefinition(QueryTypeDataProvider::class);
+        $formMapperDefinition->setArgument(3, $queryTypes);
     }
 
     /**

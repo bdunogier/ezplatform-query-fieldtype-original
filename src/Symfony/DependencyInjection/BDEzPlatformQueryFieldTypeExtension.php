@@ -22,6 +22,7 @@ class BDEzPlatformQueryFieldTypeExtension extends Extension implements PrependEx
         $loader->load('indexable_fieldtypes.yml');
         $loader->load('field_value_converters.yml');
         $loader->load('graphql.yml');
+        $loader->load('data_providers.yml');
     }
 
     public function prepend(ContainerBuilder $container)

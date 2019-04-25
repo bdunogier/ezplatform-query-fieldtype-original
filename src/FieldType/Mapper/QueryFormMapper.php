@@ -2,6 +2,7 @@
 
 namespace BD\EzPlatformQueryFieldType\FieldType\Mapper;
 
+use BD\EzPlatformQueryFieldType\DataProvider\DataProvider;
 use BD\EzPlatformQueryFieldType\Form\Type\FieldType\QueryFieldType;
 use eZ\Publish\API\Repository\ContentTypeService;
 use EzSystems\RepositoryForms\Data\Content\FieldData;
@@ -15,52 +16,38 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class QueryFormMapper implements FieldDefinitionFormMapperInterface, FieldValueFormMapperInterface
 {
     /**
-     * @var ContentTypeService
+     * @var DataProvider
+     */
+    private $provider;
+
+    /**
+     * @var \eZ\Publish\API\Repository\ContentTypeService
      */
     private $contentTypeService;
 
-    /**
-     * List of query types
-     * @var array
-     */
-    private $queryTypes;
-
-    public function __construct(ContentTypeService $contentTypeService, array $queryTypes = [])
+    public function __construct(ContentTypeService $contentTypeService, DataProvider $provider)
     {
+        $this->provider = $provider;
         $this->contentTypeService = $contentTypeService;
-        $this->queryTypes = $queryTypes;
     }
 
     public function mapFieldDefinitionForm(FormInterface $fieldDefinitionForm, FieldDefinitionData $data)
     {
-        $fieldDefinitionForm
-            ->add('QueryType',Type\ChoiceType::class,
-                [
-                    'label' => 'Query type',
-                    'property_path' => 'fieldSettings[QueryType]',
-                    'choices' => $this->queryTypes,
-                ]
-            )
-            ->add('ReturnedType', Type\ChoiceType::class,
-                [
-                    'label' => 'Returned type',
-                    'property_path' => 'fieldSettings[ReturnedType]',
-                    'choices' => $this->getContentTypes(),
-                ]
-            )
-            ->add('Parameters', Type\TextareaType::class,
-                [
-                    'label' => 'Parameters',
-                    'property_path' => 'fieldSettings[Parameters]'
-                ]
-            );
+        $fieldDefinitionForm->add('ReturnedType', Type\ChoiceType::class,
+            [
+                'label' => 'Returned type',
+                'property_path' => 'fieldSettings[ReturnedType]',
+                'choices' => $this->getContentTypes(),
+            ]
+        );
+
+        $this->provider->configureFieldDefinitionForm($fieldDefinitionForm, $data);
     }
 
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data)
     {
         $fieldDefinition = $data->fieldDefinition;
         $formConfig = $fieldForm->getConfig();
-        $validatorConfiguration = $fieldDefinition->getValidatorConfiguration();
         $names = $fieldDefinition->getNames();
         $label = $fieldDefinition->getName($formConfig->getOption('mainLanguageCode')) ?: reset($names);
 

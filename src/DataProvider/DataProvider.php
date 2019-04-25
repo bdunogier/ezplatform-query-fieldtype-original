@@ -19,7 +19,7 @@ interface DataProvider
      * @param \Symfony\Component\Form\FormInterface $form
      * @param \EzSystems\RepositoryForms\Data\FieldDefinitionData $fieldDefinitionData
      */
-    public function configureForm(FormInterface $form, FieldDefinitionData $fieldDefinitionData);
+    public function configureFieldDefinitionForm(FormInterface $form, FieldDefinitionData $fieldDefinitionData);
 
     /**
      * Returns related data for a given field.

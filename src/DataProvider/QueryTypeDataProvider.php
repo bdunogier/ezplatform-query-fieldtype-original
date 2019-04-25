@@ -4,13 +4,12 @@
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 
-namespace DataProvider;
+namespace BD\EzPlatformQueryFieldType\DataProvider;
 
-use BD\EzPlatformQueryFieldType\DataProvider\DataProvider;
+use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\Core\QueryType\QueryTypeRegistry;
 use EzSystems\EzPlatformGraphQL\GraphQL\DataLoader\ContentLoader;
-use EzSystems\EzPlatformGraphQL\GraphQL\DataLoader\ContentTypeLoader;
 use EzSystems\EzPlatformGraphQL\GraphQL\Value\Field;
 use EzSystems\RepositoryForms\Data\FieldDefinitionData;
 use Symfony\Component\Form\Extension\Core\Type;
@@ -29,9 +28,9 @@ class QueryTypeDataProvider implements DataProvider
     private $contentLoader;
 
     /**
-     * @var \EzSystems\EzPlatformGraphQL\GraphQL\DataLoader\ContentTypeLoader
+     * @var ContentTypeService
      */
-    private $contentTypeLoader;
+    private $contentTypeService;
 
     /**
      * List of query types
@@ -41,17 +40,17 @@ class QueryTypeDataProvider implements DataProvider
 
     public function __construct(
         ContentLoader $contentLoader,
-        ContentTypeLoader $contentTypeLoader,
+        ContentTypeService $contentTypeService,
         QueryTypeRegistry $queryTypeRegistry,
         array $queryTypes = []
     ) {
         $this->contentLoader = $contentLoader;
-        $this->contentTypeLoader = $contentTypeLoader;
+        $this->contentTypeService = $contentTypeService;
         $this->queryTypeRegistry = $queryTypeRegistry;
         $this->queryTypes = $queryTypes;
     }
 
-    public function configureForm(FormInterface $form, FieldDefinitionData $fieldDefinitionData)
+    public function configureFieldDefinitionForm(FormInterface $form, FieldDefinitionData $fieldDefinitionData)
     {
         $form
             ->add('QueryType',Type\ChoiceType::class,
@@ -59,13 +58,6 @@ class QueryTypeDataProvider implements DataProvider
                     'label' => 'Query type',
                     'property_path' => 'fieldSettings[QueryType]',
                     'choices' => $this->queryTypes,
-                ]
-            )
-            ->add('ReturnedType', Type\ChoiceType::class,
-                [
-                    'label' => 'Returned type',
-                    'property_path' => 'fieldSettings[ReturnedType]',
-                    'choices' => $this->getContentTypes(),
                 ]
             )
             ->add('Parameters', Type\TextareaType::class,
@@ -80,7 +72,7 @@ class QueryTypeDataProvider implements DataProvider
     {
         $queryFieldDefinition =
             $this
-                ->contentTypeLoader->load($content->contentInfo->contentTypeId)
+                ->contentTypeService->load($content->contentInfo->contentTypeId)
                 ->getFieldDefinition($field->fieldDefIdentifier);
 
         $queryType = $this->queryTypeRegistry->getQueryType($queryFieldDefinition->fieldSettings['QueryType']);
@@ -96,14 +88,5 @@ class QueryTypeDataProvider implements DataProvider
     public function getName(): string
     {
         return 'Query type';
-    }
-
-    private function getContentTypes()
-    {
-        foreach ($this->contentTypeService->loadContentTypeGroups() as $contentTypeGroup) {
-            foreach ($this->contentTypeService->loadContentTypes($contentTypeGroup) as $contentType) {
-                yield $contentType->getName() => $contentType->identifier;
-            }
-        }
     }
 }

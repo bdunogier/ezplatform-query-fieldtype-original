@@ -1,0 +1,20 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    BD\EzPlatformQueryFieldType\DataProvider\:
+        resource: ../../../DataProvider/*
+
+    BD\EzPlatformQueryFieldType\DataProvider\QueryTypeDataProvider:
+        arguments:
+            $contentTypeService: '@ezpublish.siteaccessaware.service.content_type'
+        tags:
+            - {name: ez_dynamic_relations.provider, identifier: querytype}
+
+    BD\EzPlatformQueryFieldType\DataProvider\TestDataProvider:
+        arguments:
+            $contentTypeService: '@ezpublish.siteaccessaware.service.content_type'
+        tags:
+            - {name: ez_dynamic_relations.provider, identifier: test}
