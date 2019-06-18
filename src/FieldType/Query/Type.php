@@ -90,7 +90,7 @@ class Type extends FieldType
      */
     public function isEmptyValue(SPIValue $value)
     {
-        return $value->text === null || trim($value->text) === '';
+        return false;
     }
 
     protected function createValueFromInput($inputValue)
