@@ -1,8 +1,15 @@
 {% extends '@EzPublishCore/content_fields.html.twig' %}
 
-{% block bdquery_field %}
+{% block query_field %}
 {% spaceless %}
-    {% set field_value = field.value.text %}
-    {{ block( 'simple_inline_field' ) }}
+    {{ render(controller(
+        "ez_content:viewAction",
+        {
+            "contentId": contentInfo.id,
+            "queryFieldDefinitionIdentifier": field.fieldDefIdentifier,
+            "viewType": "query_field"
+        }
+    )) }}
+
 {% endspaceless %}
 {% endblock %}
