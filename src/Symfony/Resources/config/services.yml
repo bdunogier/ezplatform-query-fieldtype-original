@@ -1,5 +1,9 @@
 services:
-    BD\EzPlatformQueryFieldType\Controller\QueryFieldController:
+    _defaults:
         autoconfigure: true
         autowire: true
         public: true
+
+    BD\EzPlatformQueryFieldType\Controller\QueryFieldController: ~
+
+    BD\EzPlatformQueryFieldType\API\QueryFieldService: ~

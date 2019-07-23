@@ -1,6 +1,7 @@
 <?php
 namespace BD\EzPlatformQueryFieldType\Controller;
 
+use BD\EzPlatformQueryFieldType\API\QueryFieldService;
 use BD\EzPlatformQueryFieldType\GraphQL\QueryFieldResolver;
 use eZ\Publish\Core\MVC\Symfony\View\ContentView;
 use EzSystems\EzPlatformGraphQL\GraphQL\Value\Field as GraphQLField;
@@ -8,25 +9,23 @@ use EzSystems\EzPlatformGraphQL\GraphQL\Value\Field as GraphQLField;
 class QueryFieldController
 {
     /**
-     * @var \BD\EzPlatformQueryFieldType\GraphQL\QueryFieldResolver
+     * @var \BD\EzPlatformQueryFieldType\API\QueryFieldService
      */
-    private $queryFieldResolver;
+    private $queryFieldService;
 
-    public function __construct(QueryFieldResolver $queryFieldResolver)
+    public function __construct(QueryFieldService $queryFieldService)
     {
-        $this->queryFieldResolver = $queryFieldResolver;
+        $this->queryFieldService = $queryFieldService;
     }
 
     public function renderQueryFieldAction(ContentView $view, $queryFieldDefinitionIdentifier)
     {
-        $queryResults = $this->queryFieldResolver->resolveQueryField(
-            GraphQLField::fromField($view->getContent()->getField($queryFieldDefinitionIdentifier)),
-            $view->getContent()
-        );
-
         $view->addParameters([
-            'query_results' => $queryResults,
-            'children_view_type' => 'line'
+            'children_view_type' => 'line',
+            'query_results' => $this->queryFieldService->loadFieldData(
+                $view->getContent(),
+                $queryFieldDefinitionIdentifier
+            )
         ]);
 
         return $view;
