@@ -6,4 +6,6 @@ services:
 
     BD\EzPlatformQueryFieldType\Controller\QueryFieldController: ~
 
+    BD\EzPlatformQueryFieldType\Controller\QueryFieldRestController: ~
+
     BD\EzPlatformQueryFieldType\API\QueryFieldService: ~
