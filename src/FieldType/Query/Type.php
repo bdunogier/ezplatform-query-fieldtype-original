@@ -8,9 +8,12 @@ use eZ\Publish\API\Repository\Values\ContentType\FieldDefinition;
 use eZ\Publish\Core\Base\Exceptions\InvalidArgumentType;
 use eZ\Publish\SPI\FieldType\Value as SPIValue;
 use eZ\Publish\Core\FieldType\Value as BaseValue;
+use eZ\Publish\SPI\Persistence\Content\FieldValue as PersistenceValue;
 
 class Type extends FieldType
 {
+    const TYPE_IDENTIFIER = 'query';
+
     protected $validatorConfigurationSchema = array();
 
     protected $settingsSchema = [
@@ -40,12 +43,13 @@ class Type extends FieldType
      * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
      *
      * @param \eZ\Publish\API\Repository\Values\ContentType\FieldDefinition $fieldDefinition The field definition of the field
-     * @param \eZ\Publish\Core\FieldType\TextLine\Value $fieldValue The field value for which an action is performed
+     * @param \BD\EzPlatformQueryFieldType\FieldType\Query\Value $fieldValue The field value for which an action is performed
      *
      * @return \eZ\Publish\SPI\FieldType\ValidationError[]
      */
     public function validate(FieldDefinition $fieldDefinition, SPIValue $fieldValue)
     {
+        // @todo should inspect $fieldValue->items to check if the fields match the field definition
         $validationErrors = [];
 
         return $validationErrors;
@@ -58,7 +62,7 @@ class Type extends FieldType
      */
     public function getFieldTypeIdentifier()
     {
-        return 'query';
+        return self::TYPE_IDENTIFIER;
     }
 
     /**
@@ -67,7 +71,7 @@ class Type extends FieldType
      * It will be used to generate content name and url alias if current field is designated
      * to be used in the content name/urlAlias pattern.
      *
-     * @param \eZ\Publish\Core\FieldType\TextLine\Value $value
+     * @param \BD\EzPlatformQueryFieldType\FieldType\Query\Value $value
      *
      * @return string
      */
@@ -84,18 +88,18 @@ class Type extends FieldType
     /**
      * Returns if the given $value is considered empty by the field type.
      *
-     * @param mixed $value
+     * @param \BD\EzPlatformQueryFieldType\FieldType\Query\Value $value
      *
      * @return bool
      */
     public function isEmptyValue(SPIValue $value)
     {
-        return false;
+        return empty($value->items);
     }
 
     protected function createValueFromInput($inputValue)
     {
-        if (is_string($inputValue)) {
+        if (is_array($inputValue)) {
             $inputValue = new Value($inputValue);
         }
 
@@ -107,15 +111,15 @@ class Type extends FieldType
      *
      * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException If the value does not match the expected structure.
      *
-     * @param \eZ\Publish\Core\FieldType\TextLine\Value $value
+     * @param \BD\EzPlatformQueryFieldType\FieldType\Query\Value $value
      */
     protected function checkValueStructure(BaseValue $value)
     {
-        if (!is_string($value->text)) {
+        if (!is_array($value->items)) {
             throw new InvalidArgumentType(
-                '$value->text',
-                'string',
-                $value->text
+                '$value->items',
+                'array',
+                $value->items
             );
         }
     }
@@ -137,7 +141,7 @@ class Type extends FieldType
      *
      * @param mixed $hash
      *
-     * @return \eZ\Publish\Core\FieldType\TextLine\Value $value
+     * @return \BD\EzPlatformQueryFieldType\FieldType\Query\Value $value
      */
     public function fromHash($hash)
     {
@@ -151,7 +155,7 @@ class Type extends FieldType
     /**
      * Converts a $Value to a hash.
      *
-     * @param \eZ\Publish\Core\FieldType\TextLine\Value $value
+     * @param \BD\EzPlatformQueryFieldType\FieldType\Query\Value $value
      *
      * @return mixed
      */
@@ -161,7 +165,7 @@ class Type extends FieldType
             return null;
         }
 
-        return $value->text;
+        return $value->items;
     }
 
     /**
@@ -191,5 +195,15 @@ class Type extends FieldType
         }
 
          return $errors;
+    }
+
+    /**
+     * @param \BD\EzPlatformQueryFieldType\FieldType\Query\Value $value
+     *
+     * @return \eZ\Publish\SPI\Persistence\Content\FieldValue
+     */
+    public function toPersistenceValue(SPIValue $value)
+    {
+        return new PersistenceValue(['externalData' => $value->items]);
     }
 }

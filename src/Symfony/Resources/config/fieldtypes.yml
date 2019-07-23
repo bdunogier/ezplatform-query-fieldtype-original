@@ -10,3 +10,21 @@ services:
             - { name: ez.fieldFormMapper.value, fieldType: query }
         arguments:
             $contentTypeService: '@ezpublish.api.service.content_type'
+
+    BD\EzPlatformQueryFieldType\FieldType\Query\CreateDelegatedItemsSlot:
+        autowire: true
+        autoconfigure: true
+        tags:
+            - { name: ezpublish.api.slot, signal: ContentService\PublishVersionSignal }
+
+    BD\EzPlatformQueryFieldType\FieldType\Query\ExternalStorage:
+        autowire: true
+        autoconfigure: true
+        public: true
+        tags:
+            - {name: ezpublish.fieldType.externalStorageHandler, alias: query}
+
+    BD\EzPlatformQueryFieldType\FieldType\Query\ItemsDelegator: ~
+
+    BD\EzPlatformQueryFieldType\FieldType\Query\CreateStructProvider:
+        public: false

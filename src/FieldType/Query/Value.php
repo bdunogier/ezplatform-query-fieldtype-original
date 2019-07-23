@@ -6,21 +6,15 @@ use eZ\Publish\Core\FieldType\Value as BaseValue;
 
 class Value extends BaseValue
 {
-    /**
-     * Text content.
-     *
-     * @var string
-     */
-    public $text;
+    public $items = [];
 
-    /**
-     * Construct a new Value object and initialize it $text.
-     *
-     * @param string $text
-     */
-    public function __construct($text = '')
+    public function __construct($items = [])
     {
-        $this->text = $text;
+        if (!is_array($items)) {
+            $items = [];
+        }
+
+        $this->items = $items;
     }
 
     /**
@@ -28,6 +22,6 @@ class Value extends BaseValue
      */
     public function __toString()
     {
-        return (string)$this->text;
+        return '';
     }
 }
