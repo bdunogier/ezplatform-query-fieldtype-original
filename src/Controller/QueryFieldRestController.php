@@ -62,7 +62,7 @@ class QueryFieldRestController
                     );
                 },
                 $this->queryFieldService->loadFieldData($content, $fieldDefinitionIdentifier)
-            ),
+            )
         );
     }
 
